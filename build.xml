@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="WordNetApp" default="build" basedir=".">
+	<property name="base.dir"	value="." />
+	<property name="lib.dir"	value="${base.dir}/lib" />
+	<property name="src.dir"	value="${base.dir}/src" />
+	<property name="bin.dir"	value="${base.dir}/bin" />
+	<property name="dist.dir"	value="${base.dir}/dist" />
+	<property name="config.dir"	value="${base.dir}/config" />
+	<property name="wordnet.dir"	value="${base.dir}/WordNet-3.0" />
+	<property name="main-class"	value="wordnetapp.Main" />
+
+	<path id="libraries.path">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
+	<target name="clean" description="Remove all generated files">
+		<delete dir="${bin.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+	
+	<target name="init" description="Create the folders required for compilation">
+		<mkdir dir="${bin.dir}" />
+	</target>
+	
+	<target name="compile" description="" depends="init">
+		<javac srcdir="${src.dir}" destdir="${bin.dir}" includeantruntime="false">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+	
+	<target name="build" description="Create a jar for the WordNetApp project" depends="init, compile">
+		<echo message="Creating dist directory..."/>
+		<mkdir dir="${dist.dir}" />
+		
+		<echo message="Copying ${config.dir} to ${dist.dir}..."/>
+		<mkdir dir="${dist.dir}/${config.dir}"/>
+		<copy todir="${dist.dir}/${config.dir}" flatten="true">
+            <path path="${config.dir}/file_properties.xml" />
+        </copy>
+		
+		<echo message="Copying ${wordnet.dir}/dict to ${dist.dir}..."/>
+		<mkdir dir="${dist.dir}/${wordnet.dir}/dict"/>
+		<copy todir="${dist.dir}//${wordnet.dir}/dict" flatten="true">
+            <path>
+            	<fileset dir="${wordnet.dir}/dict">
+            		<include name="*.*" />
+            	</fileset>
+           	</path>
+        </copy>
+		
+		<echo message="Copying ${lib.dir} to ${dist.dir}..."/>
+		<mkdir dir="${dist.dir}/${lib.dir}"/>
+		<copy todir="${dist.dir}/${lib.dir}" flatten="true">
+            <path refid="libraries.path"/>
+        </copy>
+		
+		<echo message="Creating ${ant.project.name}.jar..."/>
+		<jar jarfile="${dist.dir}/${ant.project.name}.jar" basedir="${bin.dir}">
+			<manifest>
+	            <attribute name="Main-Class" value="${main-class}"/>
+	            <attribute name="Class-Path" value="${lib.dir}/log4j-1.2.15.jar ${lib.dir}/jwnl.jar ${lib.dir}/commons-logging.jar ${lib.dir}/junit-4.1.jar"/>
+	        </manifest>
+		</jar>
+	</target>
+	
+	<target name="clean_build" depends="clean, build">
+	</target>
+</project>

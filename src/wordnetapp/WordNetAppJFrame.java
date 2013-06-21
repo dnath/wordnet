@@ -204,7 +204,7 @@ public class WordNetAppJFrame extends JFrame {
             SwingUtilities.updateComponentTreeUI(this);
 		}
         catch (Exception e){
-	        e.printStackTrace();
+	        logger.error(e);
 	    }
 
     }

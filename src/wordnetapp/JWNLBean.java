@@ -35,7 +35,7 @@ public class JWNLBean {
         try{
             JWNL.initialize(new FileInputStream(mFileProperties));
         }catch(Exception e){
-            logger.debug(e);
+            logger.error(e);
         }
         
         logger.debug("success : JWNL Initialization");
@@ -58,7 +58,7 @@ public class JWNLBean {
                 }
             }
         }catch(Exception e){
-            logger.debug(e);
+            logger.error(e);
         }
         return str;
     }
@@ -84,7 +84,7 @@ public class JWNLBean {
                 str += "\n";
              }
         }catch(Exception e){
-            logger.debug(e);
+            logger.error(e);
         }
         return str;
     }
@@ -143,7 +143,7 @@ public class JWNLBean {
                 }
              }
         }catch(Exception e){
-            logger.debug(e);
+            logger.error(e);
         }
         return str;
     }
@@ -187,7 +187,7 @@ public class JWNLBean {
                 }
              }
         }catch(Exception e){
-            logger.debug(e);
+            logger.error(e);
         }
         return str;
     }
@@ -234,7 +234,7 @@ public class JWNLBean {
                 }
              }
         }catch(Exception e){
-            logger.debug(e);
+            logger.error(e);
         }
         return str;
     }
@@ -281,7 +281,7 @@ public class JWNLBean {
                 }
              }
         }catch(Exception e){
-            logger.debug(e);
+            logger.error(e);
         }
         return str;
     }
@@ -312,7 +312,7 @@ public class JWNLBean {
                 }
              }
         }catch(Exception e){
-            logger.debug(e);
+            logger.error(e);
         }
         return str;
     }
@@ -355,7 +355,7 @@ public class JWNLBean {
                 }
              }
         }catch(Exception e){
-            logger.debug(e);
+            logger.error(e);
         }
         return str;
     }
@@ -398,7 +398,7 @@ public class JWNLBean {
                 }
              }
         }catch(Exception e){
-            logger.debug(e);
+            logger.error(e);
         }
         return str;
     }
@@ -441,7 +441,7 @@ public class JWNLBean {
                 }
              }
         }catch(Exception e){
-            logger.debug(e);
+            logger.error(e);
         }
         return str;
     }
@@ -519,7 +519,7 @@ public class JWNLBean {
              }
         }
         catch(Exception e){
-            logger.debug(e);
+            logger.error(e);
         }
         
         return str;
